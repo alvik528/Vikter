@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Vikter</title>
+  <link rel="stylesheet" href="d3-slider-master/d3.slider.css" />  
+  <style>
+
+    body {
+      font-family: Verdana,Arial,sans-serif;
+    }
+
+    h2 {
+      font-size: 1.2em;
+      margin: 60px 0 5px 0;
+    }
+
+    .wrapper {
+      width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .wrapper > div {
+      margin: 35px 0;
+    }
+
+    #slider8 {
+      height: 250px;
+    }
+
+    #slider9 {
+      height: 250px;
+    }
+
+
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <div class="inspect_options">
+      <input class="inspect_button" value="routine" type="checkbox">Routine Inspection/Field Review</input><br>
+      <input class="inspect_button" value="consult" type="checkbox">Consultation/Education - Field</input><br>
+      <input class="inspect_button" value="return" type="checkbox">Return Inspection</input><br>
+    </div>
+
+    <div class="viol_options">
+      <input class="viol_button" value="" type="checkbox">a</input><br>
+      <input class="viol_button" value="" type="checkbox">b</input><br>
+      <input class="viol_button" value="" type="checkbox">c</input><br>
+    </div>
+
+    <div class="desc_options">
+      <input class="desc_button" value="" type="checkbox">a</input><br>
+      <input class="desc_button" value="" type="checkbox">b</input><br>
+      <input class="desc_button" value="" type="checkbox">c</input><br>
+    </div>
+
+  	<h1>Gr8 Sliders</h1>
+
+
+    <h2>Date</h2>
+    <div id="date"></div>
+
+    <h2>Number of Failed Inspections</h2>
+    <div id="failed"></div>
+
+    <h2>Total Inspection Scores</h2>
+    <div id="inspectionScore"></div>
+
+    <h2>Total Violation Points</h2>
+    <div id="violationPoints"></div>
+
+    <h2>Number of Red Flags</h2>
+    <div id="redFlags"></div>
+
+    <h2>Number of Blue Flags</h2>
+    <div id="blueFlags"></div>
+
+
+
+   
+
+    
+
+  </div>
+
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script src="d3-slider-master/d3.slider.js"></script>
+  <script>
+  //inspection types
+  d3.selectAll(".inspect_button").on("change", function() {
+  var type = this.value;
+
+
+  console.log(type + this.checked);
+});
+
+
+  //date
+    d3.select('#date').call(d3.slider().scale(d3.time.scale()
+    .domain([new Date(2006,1,1), new Date(2016,1,1)]))
+    .axis( d3.svg.axis() ).snap(true).value([new Date(2008,1,1),new Date(2010,1,1)])
+    .on("slide", function(evt, value) {
+      //value[ 0 ]
+      console.log(value[0]+value[1]);
+      //value[ 1 ]
+    }));
+
+
+  //number of failed inspections - range
+
+  d3.select('#failed').call(d3.slider().axis(true).min(0).max(10).value( [ 0, 10 ] ).on("slide", function(evt, value) {
+    //value[ 0 ]
+      //value[ 1 ]
+  }));
+
+
+
+  //inspection score - range
+  d3.select('#inspectionScore').call(d3.slider().axis(true).min(0).max(100).value( [ 0, 100 ] ).on("slide", function(evt, value) {
+    //value[ 0 ]
+      //value[ 1 ]
+  }));
+  //total violation points - range
+  d3.select('#violationPoints').call(d3.slider().axis(true).min(0).max(500).value( [ 0, 500 ] ).on("slide", function(evt, value) {
+    //value[ 0 ]
+      //value[ 1 ]
+  }));
+  //number of red flags -  range
+  d3.select('#redFlags').call(d3.slider().axis(true).min(0).max(10).value( [ 0, 10 ] ).on("slide", function(evt, value) {
+    //value[ 0 ]
+      //value[ 1 ]
+  }));
+  //number of blue flags -  range
+  d3.select('#blueFlags').call(d3.slider().axis(true).min(0).max(10).value( [ 0, 10 ] ).on("slide", function(evt, value) {
+    //value[ 0 ]
+      //value[ 1 ]
+  }));
+
+
+
+  </script>
+ 
+</body>
+</html>
