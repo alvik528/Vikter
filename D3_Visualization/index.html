@@ -179,13 +179,19 @@
                           .data(arrays)
                           .enter()
                           .append("circle");
-
+                          
             var circleAttributes = circles
                             .attr("cx", function (d) { return longit(d.Longitude); })
                             .attr("cy", function (d) { return latit(d.Latitude) + 5; })
                             .attr("r", function (d) { return 3; })
                             .style("stroke", "black")
-                            .style("fill", "green");
+                            .style("fill", "green")
+                            .on("click", function(d) {
+                              
+                               console.log(d);
+                               return d;  
+                          });
+
         }
         console.log(arrays);
     })
