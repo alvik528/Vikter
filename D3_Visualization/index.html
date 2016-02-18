@@ -79,9 +79,9 @@
 <div class="bottom">
     <h2>Inspection Type</h2>
     <div class="inspect_options">
-      <label><input class="inspect_button" value="routine" type="checkbox">Routine Inspection/Field Review</input></label>
-      <label><input class="inspect_button" value="consult" type="checkbox">Consultation/Education - Field</input></label>
-      <label><input class="inspect_button" value="return" type="checkbox">Return Inspection</input></label>
+      <label><input class="inspect_button" value="Routine Inspection/Field Review" type="checkbox">Routine Inspection/Field Review</input></label>
+      <label><input class="inspect_button" value="Consultation/Education - Field" type="checkbox">Consultation/Education - Field</input></label>
+      <label><input class="inspect_button" value="Return Inspection" type="checkbox">Return Inspection</input></label>
     </div>
     <br>
     <h2>Location Type</h2>
@@ -181,15 +181,29 @@
     /*
         Sliders and checkboxes
     */
+
+    //array stuff
+    //for the first 12 indexes they are the values of the sliders
+    var currentValues = [2006,2016,0,10,0,100,0,500,0,10,0,10];
+    var currentBoxes = []
+
       //inspection types
+
+      
       d3.selectAll(".inspect_button").on("change", function() {
         var type = this.value;  
         console.log(type + this.checked);
+        
       });
       //risk categories
       d3.selectAll(".desc_button").on("change", function() {
         var type = this.value;  
         console.log(type + this.checked);
+        if(this.checked){
+            currentValues['desc'+type] = true;
+        } else{
+            currentValues['desc'+type] = false;
+        }
       });
 
 
@@ -200,6 +214,9 @@
         .on("slide", function(evt, value) {
           //value[ 0 ]
           console.log(value[0]+value[1]);
+          currentValues[0] =value[0];
+          currentValues[1] =value[1];
+          console.log(currentValues);
           //value[ 1 ]
         }));
 
@@ -209,6 +226,8 @@
       d3.select('#failed').call(d3.slider().axis(true).min(0).max(10).value( [ 0, 10 ] ).on("slide", function(evt, value) {
         //value[ 0 ]
           //value[ 1 ]
+          currentValues[2] =value[0];
+          currentValues[3] =value[1];
       }));
 
 
@@ -217,21 +236,29 @@
       d3.select('#inspectionScore').call(d3.slider().axis(true).min(0).max(100).value( [ 0, 100 ] ).on("slide", function(evt, value) {
         //value[ 0 ]
           //value[ 1 ]
+          currentValues[4] =value[0];
+          currentValues[5] =value[1];
       }));
       //total violation points - range
       d3.select('#violationPoints').call(d3.slider().axis(true).min(0).max(500).value( [ 0, 500 ] ).on("slide", function(evt, value) {
         //value[ 0 ]
           //value[ 1 ]
+          currentValues[6] =value[0];
+          currentValues[7] =value[1];
       }));
       //number of red flags -  range
       d3.select('#redFlags').call(d3.slider().axis(true).min(0).max(10).value( [ 0, 10 ] ).on("slide", function(evt, value) {
         //value[ 0 ]
           //value[ 1 ]
+          currentValues[8] =value[0];
+          currentValues[9] =value[1];
       }));
       //number of blue flags -  range
       d3.select('#blueFlags').call(d3.slider().axis(true).min(0).max(10).value( [ 0, 10 ] ).on("slide", function(evt, value) {
         //value[ 0 ]
           //value[ 1 ]
+          currentValues[10] =value[0];
+          currentValues[11] =value[1];
       }));
 
 
