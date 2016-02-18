@@ -25,8 +25,8 @@ var prices_csv = function()
     d3.csv("data.csv", function(data) {
         var arrays = [];
         data.forEach(function(d) {
-            if(arrays.indexOf(d["Inspection Type"]) == -1) {
-                arrays.push(d["Inspection Type"]);
+            {
+                arrays.push(d);
             }
         });
         console.log(arrays);
