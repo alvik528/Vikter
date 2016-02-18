@@ -78,11 +78,6 @@
 
 <div class="bottom">
     <h2>Inspection Type</h2>
-    <div class="inspect_options">
-      <label><input class="inspect_button" value="Routine Inspection/Field Review" type="checkbox">Routine Inspection/Field Review</input></label>
-      <label><input class="inspect_button" value="Consultation/Education - Field" type="checkbox">Consultation/Education - Field</input></label>
-      <label><input class="inspect_button" value="Return Inspection" type="checkbox">Return Inspection</input></label>
-    </div>
     <br>
     <h2>Location Type</h2>
     <div class="desc_options">
@@ -200,25 +195,21 @@
     //array stuff
     //for the first 12 indexes they are the values of the sliders
     var currentValues = [2006,2016,0,10,0,100,0,500,0,10,0,10];
-    var currentBoxes = []
+    var currentBoxes = ["0Seating 13-50 - Risk Category III","0Seating 51-150 - Risk Category III","0Bed and Breakfast - Risk Category I","0Seating > 250 - Risk Category III","0Mobile Food Unit - Risk Category I","0Seating 0-12 - Risk Category III","0Caterer - Risk Category III","0Non-Profit Institution - Risk Category I","0Seating 0-12 - Risk Category II","0Grocery Store-no seating - Risk Category I","0Seating 13-50 - Risk Category II","0Mobile Food Unit - Risk Category III","0Grocery Store-no seating - Risk Category II","0Seating 13-50 - Risk Category I","0Seating 151-250 - Risk Category III","0Seating 0-12 - Risk Category I","0Bakery-no seating - Risk Category III","0Meat/Sea Food - Risk Category III","0School Lunch Program - Risk II","0Bakery-no seating - Risk Category II","0Limited Food Services - no permanent plumbing","0Caterer - Risk Category II","0Non-Profit Institution - Risk Category III","0","0Seating 51-150 - Risk Category I","0Seating > 250 - Risk Category I","0Non-Profit Institution - Risk Category II","0Seating 51-150 - Risk Category II","0Bakery-no seating - Risk Category I","0Mobile Food Unit - Risk Category II","0Tasting Room - Exempt from permit","0Seating 151-250 - Risk Category I","0Seating 151-250 - Risk Category II","0Caterer - Risk Category I","0Tasting Room - Exempt from code"]
 
       //inspection types
 
       
-      d3.selectAll(".inspect_button").on("change", function() {
-        var type = this.value;  
-        console.log(type + this.checked);
-        
-      });
       //risk categories
       d3.selectAll(".desc_button").on("change", function() {
         var type = this.value;  
         console.log(type + this.checked);
         if(this.checked){
-            currentValues['desc'+type] = true;
+            currentBoxes[currentBoxes.indexOf("0"+type)] = "1"+type;
         } else{
-            currentValues['desc'+type] = false;
+            currentBoxes[currentBoxes.indexOf("1"+type)] = "0"+type;
         }
+        console.log(currentBoxes);
       });
 
 
