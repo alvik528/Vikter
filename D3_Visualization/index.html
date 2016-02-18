@@ -188,18 +188,18 @@
                             .style("stroke", "black")
                             .style("fill", "green")
                             .on("mouseover", function(d) {
-                              tooltip.style("visibility", "visible");
-                              console.log(d);
-                              return d;  
-                          })
-                            .on("mouseout", function(d) {
                               var date = "unknown";
                               if(d.inspections[0].Inspection_Date != "") {
                                 date = d.inspections[0].Inspection_Date;
                               }
                               tooltip.html("Establishment: "+d.Name+"<br>"+"Establishment Type: "+d.Description+"<br>"+"Phone Number: "+d.Phone+"<br>"+"Address: "+d.Address+"<br>"+"Last Inspection: Date: "+date+"<br>"+"Inspection Result: "+d.inspections[0].Inspection_Result);
-                              tooltip.style("visibility", "hidden");
+                              tooltip.style("visibility", "visible");
+                              console.log(d3.select(this[0]));
                               console.log(d);
+                              return d;  
+                          })
+                            .on("mouseout", function(d) {
+                              tooltip.style("visibility", "hidden");
                               return d;  
                           });
 
