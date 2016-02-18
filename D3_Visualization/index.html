@@ -150,8 +150,23 @@
             d3.csv("data.csv", function(data) {
                 data.forEach(function(d) {
                 {
-                    arrays.push(d);
-                }
+                    var found = false;
+                    var index = 0;
+                    var inspection = {"Program_Identifier":d["Program Identifier"], "Inspection_Date": d["Inspection Date"], "Inspection_Type": d["Inspection Type"], "Inspection_Score":d["Inspection Score"], "Inspection_Result" : d["Inspection Result"], "Violation_Type" : d["Violation Type"]};
+                    while(!found && index < arrays.length) {
+                      //console.log(arrays[index].Name+" vs "+d["Name"]);
+                      if(arrays[index].Name === d["Name"]) {
+                        found = true;
+                        //console.log(arrays.length);
+                        arrays[index].inspections.push(inspection);
+                      }
+                      index++;
+                    }
+                    if(!found) {
+                      arrays.push({ "Name": d["Name"], "Latitude": d["Latitude"], "Longitude": d["Longitude"], "Description" : d["Description"] , "Address": d["Address"], "Phone": d["Phone"], inspections:[inspection]});
+                      console.log("HUEHUEHUE");
+                    }
+              }
             });
             });
 
