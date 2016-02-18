@@ -42,7 +42,7 @@
         #svg{
             width: 1000px;
             height:1000px;
-        }
+        } 
 
       </style>
 
@@ -119,11 +119,18 @@
 </div>
     <script src="d3.slider.js"></script>
     <script type="text/javascript">
-
+    
+    var tooltip = d3.select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("z-index", "10000")
+    .style("visibility", "hidden")
+    .style("white-space", "pre-wrap")
 
     var width = 1000,
     height = 1000;
     var arrays = [];
+
     var jsonCircles = [
        { "x_axis": 900, "y_axis": 900, "radius": 3, "color" : "green" },
        { "x_axis": 30, "y_axis": 30, "radius": 3, "color" : "purple"},
@@ -181,10 +188,20 @@
                             .attr("r", function (d) { return 3; })
                             .style("stroke", "black")
                             .style("fill", "green")
-                            .on("click", function(d) {
-                              
-                               console.log(d);
-                               return d;  
+                            .on("mouseover", function(d) {
+                              tooltip.style("visibility", "visible");
+                              console.log(d);
+                              return d;  
+                          })
+                            .on("mouseout", function(d) {
+                              var date = "unknown";
+                              if(d.inspections[0].Inspection_Date != "") {
+                                date = d.inspections[0].Inspection_Date;
+                              }
+                              tooltip.html("Establishment: "+d.Name+"<br>"+"Establishment Type: "+d.Description+"<br>"+"Phone Number: "+d.Phone+"<br>"+"Address: "+d.Address+"<br>"+"Last Inspection: Date: "+date+"<br>"+"Inspection Result: "+d.inspections[0].Inspection_Result);
+                              tooltip.style("visibility", "hidden");
+                              console.log(d);
+                              return d;  
                           });
 
         }
