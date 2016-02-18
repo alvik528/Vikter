@@ -60,8 +60,7 @@
     <h2>Total Inspection Scores</h2>
     <div id="inspectionScore"></div>
 
-    <h2>Total Violation Points</h2>
-    <div id="violationPoints"></div>
+
 
     <h2>Number of Red Flags</h2>
     <div id="redFlags"></div>
@@ -217,8 +216,75 @@
 
     //array stuff
     //for the first 12 indexes they are the values of the sliders
-    var currentValues = [2006,2016,0,10,0,100,0,500,0,10,0,10];
-    var currentBoxes = ["1Seating 13-50 - Risk Category III","1Seating 51-150 - Risk Category III","1Bed and Breakfast - Risk Category I","1Seating > 250 - Risk Category III","1Mobile Food Unit - Risk Category I","1Seating 0-12 - Risk Category III","1Caterer - Risk Category III","1Non-Profit Institution - Risk Category I","1Seating 0-12 - Risk Category II","1Grocery Store-no seating - Risk Category I","1Seating 13-50 - Risk Category II","1Mobile Food Unit - Risk Category III","1Grocery Store-no seating - Risk Category II","1Seating 13-50 - Risk Category I","1Seating 151-250 - Risk Category III","1Seating 0-12 - Risk Category I","1Bakery-no seating - Risk Category III","1Meat/Sea Food - Risk Category III","1School Lunch Program - Risk II","1Bakery-no seating - Risk Category II","1Limited Food Services - no permanent plumbing","1Caterer - Risk Category II","1Non-Profit Institution - Risk Category III","1Seating 51-150 - Risk Category I","0Seating > 250 - Risk Category I","1Non-Profit Institution - Risk Category II","1Seating 51-150 - Risk Category II","1Bakery-no seating - Risk Category I","1Mobile Food Unit - Risk Category II","1Tasting Room - Exempt from permit","1Seating 151-250 - Risk Category I","1Seating 151-250 - Risk Category II","1Caterer - Risk Category I","1Tasting Room - Exempt from code"]
+    var currentValues = [2006,2016,0,150,0,8000,0,500,0,100,0,100];
+    var currentBoxes = ["1Seating 13-50 - Risk Category III","1Seating 51-150 - Risk Category III","1Bed and Breakfast - Risk Category I","1Seating > 250 - Risk Category III","1Mobile Food Unit - Risk Category I","1Seating 0-12 - Risk Category III","1Caterer - Risk Category III","1Non-Profit Institution - Risk Category I","1Seating 0-12 - Risk Category II","1Grocery Store-no seating - Risk Category I","1Seating 13-50 - Risk Category II","1Mobile Food Unit - Risk Category III","1Grocery Store-no seating - Risk Category II","1Seating 13-50 - Risk Category I","1Seating 151-250 - Risk Category III","1Seating 0-12 - Risk Category I","1Bakery-no seating - Risk Category III","1Meat/Sea Food - Risk Category III","1School Lunch Program - Risk II","1Bakery-no seating - Risk Category II","1Limited Food Services - no permanent plumbing","1Caterer - Risk Category II","1Non-Profit Institution - Risk Category III","1Seating 51-150 - Risk Category I","0Seating > 250 - Risk Category I","1Non-Profit Institution - Risk Category II","1Seating 51-150 - Risk Category II","1Bakery-no seating - Risk Category I","1Mobile Food Unit - Risk Category II","1Tasting Room - Exempt from permit","1Seating 151-250 - Risk Category I","1Seating 151-250 - Risk Category II","1Caterer - Risk Category I","1Tasting Room - Exempt from code"];
+
+
+    function update(){
+
+        var circles = svgContainer.selectAll("circle").each(function(d, i) {
+            var display = true;
+
+            //failed inspections
+            var countFailed = 0;
+            var inspectionScore = 0;
+            var redFlags = 0;
+            var blueFlags = 0;
+            var goodDate = false;
+
+
+
+            for(i = 0;i<d.inspections.length;i++){
+               
+                if(d.inspections[i].Inspection_Date == ""&&currentValues[1] == 2016){
+                    goodDate = true;
+                }
+                inspectionScore+=parseInt(d.inspections[i].Inspection_Score);
+                if(d.inspections[i].Inspection_Result == "Unsatisfactory"){
+                    countFailed++;
+                }
+                if(d.inspections[i].Violation_Type == "red"){
+                    redFlags++;
+                }
+                if(d.inspections[i].Violation_Type == "blue"){
+                    blueFlags++;
+                }
+                if(parseInt(d.inspections[i].Inspection_Date.substring(6))>=parseInt(currentValues[0])&&parseInt(d.inspections[i].Inspection_Date.substring(6))<=parseInt(currentValues[1])){
+                    goodDate = true;
+                } 
+            }
+
+            if(countFailed>currentValues[3]||countFailed<currentValues[2]){
+                display = false;
+               // console.log("failed "+countFailed);
+            }
+            if(inspectionScore>currentValues[5]||countFailed<currentValues[4]){
+                display = false;
+              //  console.log("score "+ inspectionScore);
+            }
+            if(redFlags>currentValues[9]||redFlags<currentValues[8]){
+                display = false;
+               // console.log("red");
+            }
+            if(blueFlags>currentValues[11]||blueFlags<currentValues[10]){
+                display = false;
+              //  console.log("blue"+blueFlags);
+            }
+            if(!goodDate){
+                display = false;
+              //  console.log("date");
+            }
+
+        
+
+
+            if(display){
+                d3.select(this).style("visibility", "visible");
+            } else {
+                d3.select(this).style("visibility", "hidden");
+            }
+        });
+    }
 
       //inspection types
 
@@ -238,56 +304,56 @@
 
       //date
         d3.select('#date').call(d3.slider().scale(d3.time.scale()
-        .domain([new Date(2006,1,1), new Date(2016,1,1)]))
+        .domain([new Date(2005,1,1), new Date(2016,1,1)]))
         .axis( d3.svg.axis() ).snap(true).value([new Date(2008,1,1),new Date(2010,1,1)])
         .on("slide", function(evt, value) {
           //value[ 0 ]
           console.log(value[0]+value[1]);
-          currentValues[0] =value[0];
-          currentValues[1] =value[1];
+          currentValues[0] =value[0].getFullYear();
+          currentValues[1] =value[1].getFullYear();
           console.log(currentValues);
           //value[ 1 ]
+          update();
         }));
 
 
       //number of failed inspections - range
 
-      d3.select('#failed').call(d3.slider().axis(true).min(0).max(10).value( [ 0, 10 ] ).on("slide", function(evt, value) {
+      d3.select('#failed').call(d3.slider().axis(true).min(0).max(150).value( [ 0, 150 ] ).on("slide", function(evt, value) {
         //value[ 0 ]
           //value[ 1 ]
           currentValues[2] =value[0];
           currentValues[3] =value[1];
+          update();
       }));
 
 
 
       //inspection score - range
-      d3.select('#inspectionScore').call(d3.slider().axis(true).min(0).max(100).value( [ 0, 100 ] ).on("slide", function(evt, value) {
+      d3.select('#inspectionScore').call(d3.slider().axis(true).min(0).max(8000).value( [ 0, 8000 ] ).on("slide", function(evt, value) {
         //value[ 0 ]
           //value[ 1 ]
           currentValues[4] =value[0];
           currentValues[5] =value[1];
+          update();
       }));
       //total violation points - range
-      d3.select('#violationPoints').call(d3.slider().axis(true).min(0).max(500).value( [ 0, 500 ] ).on("slide", function(evt, value) {
-        //value[ 0 ]
-          //value[ 1 ]
-          currentValues[6] =value[0];
-          currentValues[7] =value[1];
-      }));
+      //cut because data was 
       //number of red flags -  range
-      d3.select('#redFlags').call(d3.slider().axis(true).min(0).max(10).value( [ 0, 10 ] ).on("slide", function(evt, value) {
+      d3.select('#redFlags').call(d3.slider().axis(true).min(0).max(100).value( [ 0, 100 ] ).on("slide", function(evt, value) {
         //value[ 0 ]
           //value[ 1 ]
           currentValues[8] =value[0];
           currentValues[9] =value[1];
+          update();
       }));
       //number of blue flags -  range
-      d3.select('#blueFlags').call(d3.slider().axis(true).min(0).max(10).value( [ 0, 10 ] ).on("slide", function(evt, value) {
+      d3.select('#blueFlags').call(d3.slider().axis(true).min(0).max(100).value( [ 0, 100 ] ).on("slide", function(evt, value) {
         //value[ 0 ]
           //value[ 1 ]
           currentValues[10] =value[0];
           currentValues[11] =value[1];
+          update();
       }));
 
 
