@@ -19,7 +19,7 @@
         }
 
         .wrapper {
-          width: 30%;
+          width: 40%;
           margin-left: auto;
           margin-right: auto;
           float: right;
@@ -34,11 +34,14 @@
            font-size: 10pt; 
         }
 
-        input {
-            margin: 10px;
-            padding: 10px;
-            display:inline-block;
-            overflow:hidden
+        label {
+            float:left;
+
+        }
+
+        #svg{
+            width: 1000px;
+            height:1000px;
         }
 
       </style>
@@ -76,47 +79,47 @@
 <div class="bottom">
     <h2>Inspection Type</h2>
     <div class="inspect_options">
-      <input class="inspect_button" value="routine" type="checkbox">Routine Inspection/Field Review</input><br>
-      <input class="inspect_button" value="consult" type="checkbox">Consultation/Education - Field</input><br>
-      <input class="inspect_button" value="return" type="checkbox">Return Inspection</input><br>
+      <label><input class="inspect_button" value="routine" type="checkbox">Routine Inspection/Field Review</input></label>
+      <label><input class="inspect_button" value="consult" type="checkbox">Consultation/Education - Field</input></label>
+      <label><input class="inspect_button" value="return" type="checkbox">Return Inspection</input></label>
     </div>
-
+    <br>
     <h2>Location Type</h2>
     <div class="desc_options">
-      <input class="desc_button" value="Seating 13-50 - Risk Category III" type="checkbox">Seating 13-50 - Risk Category III</input><br>
-      <input class="desc_button" value="Seating 51-150 - Risk Category III" type="checkbox">Seating 51-150 - Risk Category III</input><br>
-      <input class="desc_button" value="Bed and Breakfast - Risk Category I" type="checkbox">Bed and Breakfast - Risk Category I</input><br>
-      <input class="desc_button" value="Seating > 250 - Risk Category III" type="checkbox">Seating > 250 - Risk Category III</input><br>
-      <input class="desc_button" value="Mobile Food Unit - Risk Category I" type="checkbox">Mobile Food Unit - Risk Category I</input><br>
-      <input class="desc_button" value="Seating 0-12 - Risk Category III" type="checkbox">Seating 0-12 - Risk Category III</input><br>
-      <input class="desc_button" value="Caterer - Risk Category III" type="checkbox">Caterer - Risk Category III</input><br>
-      <input class="desc_button" value="Non-Profit Institution - Risk Category I" type="checkbox">Non-Profit Institution - Risk Category I</input><br>
-      <input class="desc_button" value="Seating 0-12 - Risk Category II" type="checkbox">Seating 0-12 - Risk Category II</input><br>
-      <input class="desc_button" value="Grocery Store-no seating - Risk Category I" type="checkbox">Grocery Store-no seating - Risk Category I</input><br>
-      <input class="desc_button" value="Seating 13-50 - Risk Category II" type="checkbox">Seating 13-50 - Risk Category II</input><br>
-      <input class="desc_button" value="Mobile Food Unit - Risk Category III" type="checkbox">Mobile Food Unit - Risk Category III</input><br>
-      <input class="desc_button" value="Grocery Store-no seating - Risk Category II" type="checkbox">Grocery Store-no seating - Risk Category II</input><br>
-      <input class="desc_button" value="Seating 13-50 - Risk Category I" type="checkbox">Seating 13-50 - Risk Category I</input><br>
-      <input class="desc_button" value="Seating 151-250 - Risk Category III" type="checkbox">Seating 151-250 - Risk Category III</input><br>
-      <input class="desc_button" value="Seating 0-12 - Risk Category I" type="checkbox">Seating 0-12 - Risk Category I</input><br>
-      <input class="desc_button" value="Bakery-no seating - Risk Category III" type="checkbox">Bakery-no seating - Risk Category III</input><br>
-      <input class="desc_button" value="Meat/Sea Food - Risk Category III" type="checkbox">Meat/Sea Food - Risk Category III</input><br>
-      <input class="desc_button" value="School Lunch Program - Risk II" type="checkbox">School Lunch Program - Risk II</input><br>
-      <input class="desc_button" value="Bakery-no seating - Risk Category II" type="checkbox">Bakery-no seating - Risk Category II</input><br>
-      <input class="desc_button" value="Limited Food Services - no permanent plumbing" type="checkbox">Limited Food Services - no permanent plumbing</input><br>
-      <input class="desc_button" value="Caterer - Risk Category II" type="checkbox">Caterer - Risk Category II</input><br>
-      <input class="desc_button" value="Non-Profit Institution - Risk Category III" type="checkbox">Non-Profit Institution - Risk Category III</input><br>
-      <input class="desc_button" value="Seating 51-150 - Risk Category I" type="checkbox">Seating 51-150 - Risk Category I</input><br>
-      <input class="desc_button" value="Seating > 250 - Risk Category I" type="checkbox">Seating > 250 - Risk Category I</input><br>
-      <input class="desc_button" value="Non-Profit Institution - Risk Category II" type="checkbox">Non-Profit Institution - Risk Category II</input><br>
-      <input class="desc_button" value="Seating 51-150 - Risk Category II" type="checkbox">Seating 51-150 - Risk Category II</input><br>
-      <input class="desc_button" value="Bakery-no seating - Risk Category I" type="checkbox">Bakery-no seating - Risk Category I</input><br>
-      <input class="desc_button" value="Mobile Food Unit - Risk Category II" type="checkbox">Mobile Food Unit - Risk Category II</input><br>
-      <input class="desc_button" value="Tasting Room - Exempt from permit" type="checkbox">Tasting Room - Exempt from permit</input><br>
-      <input class="desc_button" value="Seating 151-250 - Risk Category I" type="checkbox">Seating 151-250 - Risk Category I</input><br>
-      <input class="desc_button" value="Seating 151-250 - Risk Category II" type="checkbox">Seating 151-250 - Risk Category II</input><br>
-      <input class="desc_button" value="Caterer - Risk Category I" type="checkbox">Caterer - Risk Category I</input><br>
-      <input class="desc_button" value="Tasting Room - Exempt from code" type="checkbox">Tasting Room - Exempt from code</input><br>
+      <label><input class="desc_button" value="Seating 13-50 - Risk Category III" type="checkbox">Seating 13-50 - Risk Category III</input></label>
+      <label><input class="desc_button" value="Seating 51-150 - Risk Category III" type="checkbox">Seating 51-150 - Risk Category III</input></label>
+      <label><input class="desc_button" value="Bed and Breakfast - Risk Category I" type="checkbox">Bed and Breakfast - Risk Category I</input></label>
+      <label><input class="desc_button" value="Seating > 250 - Risk Category III" type="checkbox">Seating > 250 - Risk Category III</input></label>
+      <label><input class="desc_button" value="Mobile Food Unit - Risk Category I" type="checkbox">Mobile Food Unit - Risk Category I</input></label>
+      <label><input class="desc_button" value="Seating 0-12 - Risk Category III" type="checkbox">Seating 0-12 - Risk Category III</input></label>
+      <label><input class="desc_button" value="Caterer - Risk Category III" type="checkbox">Caterer - Risk Category III</input></label>
+      <label><input class="desc_button" value="Non-Profit Institution - Risk Category I" type="checkbox">Non-Profit Institution - Risk Category I</input></label>
+      <label><input class="desc_button" value="Seating 0-12 - Risk Category II" type="checkbox">Seating 0-12 - Risk Category II</input></label>
+      <label><input class="desc_button" value="Grocery Store-no seating - Risk Category I" type="checkbox">Grocery Store-no seating - Risk Category I</input></label>
+      <label><input class="desc_button" value="Seating 13-50 - Risk Category II" type="checkbox">Seating 13-50 - Risk Category II</input></label>
+      <label><input class="desc_button" value="Mobile Food Unit - Risk Category III" type="checkbox">Mobile Food Unit - Risk Category III</input></label>
+      <label><input class="desc_button" value="Grocery Store-no seating - Risk Category II" type="checkbox">Grocery Store-no seating - Risk Category II</input></label>
+      <label><input class="desc_button" value="Seating 13-50 - Risk Category I" type="checkbox">Seating 13-50 - Risk Category I</input></label>
+      <label><input class="desc_button" value="Seating 151-250 - Risk Category III" type="checkbox">Seating 151-250 - Risk Category III</input></label>
+      <label><input class="desc_button" value="Seating 0-12 - Risk Category I" type="checkbox">Seating 0-12 - Risk Category I</input></label>
+      <label><input class="desc_button" value="Bakery-no seating - Risk Category III" type="checkbox">Bakery-no seating - Risk Category III</input></label>
+      <label><input class="desc_button" value="Meat/Sea Food - Risk Category III" type="checkbox">Meat/Sea Food - Risk Category III</input></label>
+      <label><input class="desc_button" value="School Lunch Program - Risk II" type="checkbox">School Lunch Program - Risk II</input></label>
+      <label><input class="desc_button" value="Bakery-no seating - Risk Category II" type="checkbox">Bakery-no seating - Risk Category II</input></label>
+      <label><input class="desc_button" value="Limited Food Services - no permanent plumbing" type="checkbox">Limited Food Services - no permanent plumbing</input></label>
+      <label><input class="desc_button" value="Caterer - Risk Category II" type="checkbox">Caterer - Risk Category II</input></label>
+      <label><input class="desc_button" value="Non-Profit Institution - Risk Category III" type="checkbox">Non-Profit Institution - Risk Category III</input></label>
+      <label><input class="desc_button" value="Seating 51-150 - Risk Category I" type="checkbox">Seating 51-150 - Risk Category I</input></label>
+      <label><input class="desc_button" value="Seating > 250 - Risk Category I" type="checkbox">Seating > 250 - Risk Category I</input></label>
+      <label><input class="desc_button" value="Non-Profit Institution - Risk Category II" type="checkbox">Non-Profit Institution - Risk Category II</input></label>
+      <label><input class="desc_button" value="Seating 51-150 - Risk Category II" type="checkbox">Seating 51-150 - Risk Category II</input></label>
+      <label><input class="desc_button" value="Bakery-no seating - Risk Category I" type="checkbox">Bakery-no seating - Risk Category I</input></label>
+      <label><input class="desc_button" value="Mobile Food Unit - Risk Category II" type="checkbox">Mobile Food Unit - Risk Category II</input></label>
+      <label><input class="desc_button" value="Tasting Room - Exempt from permit" type="checkbox">Tasting Room - Exempt from permit</input></label>
+      <label><input class="desc_button" value="Seating 151-250 - Risk Category I" type="checkbox">Seating 151-250 - Risk Category I</input></label>
+      <label><input class="desc_button" value="Seating 151-250 - Risk Category II" type="checkbox">Seating 151-250 - Risk Category II</input></label>
+      <label><input class="desc_button" value="Caterer - Risk Category I" type="checkbox">Caterer - Risk Category I</input></label>
+      <label><input class="desc_button" value="Tasting Room - Exempt from code" type="checkbox">Tasting Room - Exempt from code</input></label>
     </div>
 </div>
     <script src="d3.slider.js"></script>
@@ -131,7 +134,7 @@
        { "x_axis": 30, "y_axis": 30, "radius": 3, "color" : "purple"},
        { "x_axis": 450, "y_axis": 450, "radius": 3, "color" : "red"}];
  
-    var svgContainer = d3.select('body').append('svg')
+    var svgContainer = d3.select('#svg').append('svg')
     .attr('width', width)
     .attr('height', height);
 
