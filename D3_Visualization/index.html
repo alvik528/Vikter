@@ -152,13 +152,21 @@
     .attr('width', width)
     .attr('height', height);
 
+    var imgs = svgContainer.selectAll("img").data([0]);
+    imgs.enter()
+        .append("svg:image")
+        .attr("xlink:href", "hue.png")
+        .attr("width", "1000")
+        .attr("height", "1000")
+        .style("max-width", "100%")
+        .style("max-height", "100%");
 
     function latit(lt) {
        return 1000 - (lt%47.65)*10000 * 4.65
     }
 
     function longit(ln) {
-        return 1000 + (ln%-122.27) * 10000 * 1.5
+        return 1000 + (ln%-122.27) * 10000 * 1.87
     }
 
     d3.select("#prices").on("click", function(d,i)
