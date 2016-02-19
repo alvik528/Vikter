@@ -245,8 +245,9 @@
 
 
     function update(){
-
         var circles = svgContainer.selectAll("circle").each(function(d, i) {
+            
+
             var display = true;
 
             //failed inspections
@@ -287,7 +288,10 @@
                 display = false;
               //  console.log("failed "+countFailed);
             }
-            if(inspectionScore>currentValues[5]||countFailed<currentValues[4]){
+
+
+
+            if(inspectionScore>currentValues[5]||inspectionScore<currentValues[4]){
                 display = false;
                // console.log("score "+ inspectionScore);
             }
