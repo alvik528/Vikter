@@ -19,7 +19,7 @@
         }
 
         .wrapper {
-          width: 40%;
+          width: 25%;
           margin-left: auto;
           margin-right: auto;
           float: right;
@@ -65,33 +65,36 @@
  <body>
 <div class="wrapper">
     
-    <h2>Date</h2>
+    <h2>Date of Inspections to Examine</h2>
     <div id="date"></div>
+    <p>Dates of Health Inspection Results to show</p>
 
     <h2>Number of Failed Inspections</h2>
     <div id="failed"></div>
+    <p>Number of times a health inspection was failed in the given time period</p>
 
-    <h2>Total Inspection Scores</h2>
+    <h2>Total Inspection Score</h2>
     <div id="inspectionScore"></div>
+    <p>Total inspection points earned in the time period, more is worse</p>
 
 
 
     <h2>Number of Red Flags</h2>
     <div id="redFlags"></div>
+    <p>Number of severe violations in the time period</p>
 
     <h2>Number of Blue Flags</h2>
     <div id="blueFlags"></div>
+    <p>Number of mild violations in the time period</p>
 
-
+  
   </div>
 
-
+    <h1 style="text-align:center">98105 Health Inspection Explorer</h1>
     <svg id="svg"></svg>
 
 <div class="bottom">
-    <h2>Inspection Type</h2>
-    <br>
-    <h2>Location Type</h2>
+    <h2>Location Type and Risk Category to Show</h2>
     <div class="desc_options">
       <label><input class="desc_button" value="Seating 13-50 - Risk Category III" type="checkbox" checked>Seating 13-50 - Risk Category III</input></label>
       <label><input class="desc_button" value="Seating 51-150 - Risk Category III" type="checkbox" checked>Seating 51-150 - Risk Category III</input></label>
@@ -128,6 +131,7 @@
       <label><input class="desc_button" value="Caterer - Risk Category I" type="checkbox" checked>Caterer - Risk Category I</input></label>
       <label><input class="desc_button" value="Tasting Room - Exempt from code" type="checkbox" checked>Tasting Room - Exempt from code</input></label>
     </div>
+    <p style="margin-top:15%">By Walter Ceder and Vikram Thirumalai <a href="https://github.com/alvik528/Vikter">Github</a></p>
 </div>
     <script src="d3.slider.js"></script>
     <script type="text/javascript">
@@ -345,7 +349,7 @@
       //date
         d3.select('#date').call(d3.slider().scale(d3.time.scale()
         .domain([new Date(2005,1,1), new Date(2016,1,1)]))
-        .axis( d3.svg.axis() ).snap(true).value([new Date(2007,1,1),new Date(2016,1,1)])
+        .axis( d3.svg.axis() ).snap(true).value([new Date(2006,1,1),new Date(2016,1,1)])
         .on("slide", function(evt, value) {
           //value[ 0 ]
          // console.log(value[0]+value[1]);
