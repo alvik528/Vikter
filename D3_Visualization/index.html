@@ -154,7 +154,7 @@
 
 
     function latit(lt) {
-       return 1000 - (lt%47.65)*10000 * 1.4
+       return 1000 - (lt%47.65)*10000 * 4.65
     }
 
     function longit(ln) {
@@ -272,23 +272,23 @@
 
             if(countFailed>currentValues[3]||countFailed<currentValues[2]){
                 display = false;
-               // console.log("failed "+countFailed);
+                console.log("failed "+countFailed);
             }
             if(inspectionScore>currentValues[5]||countFailed<currentValues[4]){
                 display = false;
-              //  console.log("score "+ inspectionScore);
+                console.log("score "+ inspectionScore);
             }
             if(redFlags>currentValues[9]||redFlags<currentValues[8]){
                 display = false;
-               // console.log("red");
+                console.log("red");
             }
             if(blueFlags>currentValues[11]||blueFlags<currentValues[10]){
                 display = false;
-              //  console.log("blue"+blueFlags);
+                console.log("blue"+blueFlags);
             }
             if(!goodDate){
                 display = false;
-              //  console.log("date");
+                console.log("date");
             }
 
         
@@ -321,7 +321,7 @@
       //date
         d3.select('#date').call(d3.slider().scale(d3.time.scale()
         .domain([new Date(2005,1,1), new Date(2016,1,1)]))
-        .axis( d3.svg.axis() ).snap(true).value([new Date(2008,1,1),new Date(2010,1,1)])
+        .axis( d3.svg.axis() ).snap(true).value([new Date(2007,1,1),new Date(2016,1,1)])
         .on("slide", function(evt, value) {
           //value[ 0 ]
           console.log(value[0]+value[1]);
