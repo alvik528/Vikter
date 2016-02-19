@@ -1,0 +1,25 @@
+Lg min
+-122.3354976
+
+lg max
+-122.2734552
+
+lt min
+47.6035402
+
+lt max
+47.67151458
+
+
+
+Idea:
+
+1000*1000 pixel 'map'
+
+take each longitude ln
+
+1000 + (ln%-122.27) * 10000 * 1.5 = x coord
+
+Latitude lt
+
+1000 - (lt%47.6)*10000 * 1.4 = y coord
