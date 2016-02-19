@@ -44,6 +44,20 @@
             height:1000px;
         } 
 
+        div.tooltip {   
+          position: absolute;           
+          text-align: center;           
+          width: 350px;                  
+          height: 100px;                 
+          padding: 2px;             
+          font: 12px sans-serif;        
+          background: lightsteelblue;   
+          border: 0px;      
+          border-radius: 8px;           
+          pointer-events: none;
+          text-align: left;         
+          font-weight: bold;
+        }
       </style>
 
     </head>
@@ -119,12 +133,11 @@
     <script src="d3.slider.js"></script>
     <script type="text/javascript">
     
-    var tooltip = d3.select("body")
+    var div = d3.select("body")
     .append("div")
-    .style("position", "absolute")
-    .style("z-index", "10000")
-    .style("visibility", "hidden")
-    .style("white-space", "pre-wrap")
+    .attr("class","tooltip")
+    .style("opacity", "0")
+    .style("z-index", "10000");
 
     var width = 1000,
     height = 1000;
@@ -141,7 +154,7 @@
 
 
     function latit(lt) {
-       return 1000 - (lt%47.6)*10000 * 1.4
+       return 1000 - (lt%47.65)*10000 * 1.4
     }
 
     function longit(ln) {
@@ -179,28 +192,31 @@
             var circles = svgContainer.selectAll("circle")
                           .data(arrays)
                           .enter()
-                          .append("circle");
-                          
-            var circleAttributes = circles
+                          .append("circle")
                             .attr("cx", function (d) { return longit(d.Longitude); })
                             .attr("cy", function (d) { return latit(d.Latitude) + 5; })
                             .attr("r", function (d) { return 3; })
                             .style("stroke", "black")
                             .style("fill", "green")
                             .on("mouseover", function(d) {
-                              var date = "unknown";
-                              if(d.inspections[0].Inspection_Date != "") {
-                                date = d.inspections[0].Inspection_Date;
-                              }
-                              tooltip.html("Establishment: "+d.Name+"<br>"+"Establishment Type: "+d.Description+"<br>"+"Phone Number: "+d.Phone+"<br>"+"Address: "+d.Address+"<br>"+"Last Inspection: Date: "+date+"<br>"+"Inspection Result: "+d.inspections[0].Inspection_Result);
-                              tooltip.style("visibility", "visible");
+                                div.transition()        
+                                    .duration(200)      
+                                    .style("opacity", .9);
+                                var date = "unknown";
+                                if(d.inspections[0].Inspection_Date != "") {
+                                    date = d.inspections[0].Inspection_Date;
+                                }
+                                div.html("Establishment: "+d.Name+"<br>"+"Establishment Type: "+d.Description+"<br>"+"Phone Number: "+d.Phone+"<br>"+"Address: "+d.Address+"<br>"+"Last Inspection: Date: "+date+"<br>"+"Inspection Result: "+d.inspections[0].Inspection_Result)
+                                .style("left", (d3.event.pageX) + "px")
+                                .style("top", (d3.event.pageY - 28) + "px");
                               console.log(d3.select(this[0]));
                               console.log(d);
                               return d;  
-                          })
+                            })
                             .on("mouseout", function(d) {
-                              tooltip.style("visibility", "hidden");
-                              return d;  
+                              div.transition()        
+                                .duration(500)      
+                                .style("opacity", 0);   
                           });
 
         }
