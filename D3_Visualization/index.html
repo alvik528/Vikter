@@ -85,7 +85,6 @@
 
   </div>
 
-     <button id="prices" value="Prices">Prices</button><br>
 
     <svg id="svg"></svg>
 
@@ -168,8 +167,8 @@
     function longit(ln) {
         return 1000 + (ln%-122.27) * 10000 * 1.87
     }
-
-    d3.select("#prices").on("click", function(d,i)
+    var count = 0;
+    var interval = setInterval( function(d,i)
     {
         if(arrays.length == 0) {
             d3.csv("data.csv", function(data) {
@@ -228,8 +227,12 @@
                           });
 
         }
-        console.log(arrays);
-    })
+        //console.log(arrays);
+        count++;
+        if(count==2){
+          clearInterval(interval);
+        }
+    },100);
         //init();
     </script>
     
