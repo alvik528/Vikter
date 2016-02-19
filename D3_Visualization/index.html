@@ -252,21 +252,26 @@
 
             for(i = 0;i<d.inspections.length;i++){
                
-                if(d.inspections[i].Inspection_Date == ""&&currentValues[1] == 2016){
-                    goodDate = true;
-                }
-                inspectionScore+=parseInt(d.inspections[i].Inspection_Score);
-                if(d.inspections[i].Inspection_Result == "Unsatisfactory"){
-                    countFailed++;
-                }
-                if(d.inspections[i].Violation_Type == "red"){
-                    redFlags++;
-                }
-                if(d.inspections[i].Violation_Type == "blue"){
-                    blueFlags++;
-                }
+               if(d.inspections[i].Inspection_Date == ""&&currentValues[1] == 2016){
+                        goodDate = true;
+                    }
+                
                 if(parseInt(d.inspections[i].Inspection_Date.substring(6))>=parseInt(currentValues[0])&&parseInt(d.inspections[i].Inspection_Date.substring(6))<=parseInt(currentValues[1])){
                     goodDate = true;
+
+
+                    inspectionScore+=parseInt(d.inspections[i].Inspection_Score);
+                    if(d.inspections[i].Inspection_Result == "Unsatisfactory"){
+                        countFailed++;
+                    }
+                    if(d.inspections[i].Violation_Type == "red"){
+                        redFlags++;
+                    }
+                    if(d.inspections[i].Violation_Type == "blue"){
+                        blueFlags++;
+                    }
+
+
                 } 
             }
 
@@ -291,7 +296,9 @@
                 console.log("date");
             }
 
-        
+            if(currentBoxes.indexOf(1+d.inspections.Description) == -1 ){
+              display = false;
+            }
 
 
             if(display){
@@ -315,6 +322,7 @@
             currentBoxes[currentBoxes.indexOf("1"+type)] = "0"+type;
         }
         console.log(currentBoxes);
+        update();
       });
 
 
