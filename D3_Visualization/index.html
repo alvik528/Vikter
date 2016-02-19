@@ -203,9 +203,9 @@
                           .append("circle")
                             .attr("cx", function (d) { return longit(d.Longitude); })
                             .attr("cy", function (d) { return latit(d.Latitude) + 5; })
-                            .attr("r", function (d) { return 2; })
+                            .attr("r", function (d) { return 3; })
                             .style("stroke", "black")
-                            .style("fill", "green")
+                            .style("fill", "red")
                             .on("mouseover", function(d) {
                                 div.transition()        
                                     .duration(200)      
