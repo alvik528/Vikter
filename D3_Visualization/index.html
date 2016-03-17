@@ -21,7 +21,7 @@
         .wrapper {
           width: 25%;
           margin-left: auto;
-          margin-right: 10%;
+          margin-right: 5%;
           float: right;
         }
 
@@ -217,17 +217,22 @@
                                     .duration(200)      
                                     .style("opacity", .9);
                                 var date = "unknown";
+                                var speciali = 0;
                                 if(d.inspections[0].Inspection_Date != "") {
                                   for(var i = 0;i<d.inspections.length;i++){
                                     if(d.inspections[i].Inspection_Date.substring(d.inspections[i].Inspection_Date.length-2)<= currentValues[1]%2000 ){
-                                      date = d.inspections[i].Inspection_Date;
+                                        if(date=="unknown"){
+                                          date = d.inspections[i].Inspection_Date;
+                                      speciali = i;
+                                        }
+                                      
                                     }
                                   }
                                     
                                     //check if date is right year
                                     //otherwise check next inspection until good.
                                 }
-                                div.html("Establishment: "+d.Name+"<br>"+"Establishment Type: "+d.Description+"<br>"+"Phone Number: "+d.Phone+"<br>"+"Address: "+d.Address+"<br>"+"Last Inspection: Date: "+date+"<br>"+"Inspection Result: "+d.inspections[0].Inspection_Result)
+                                div.html("Establishment: "+d.Name+"<br>"+"Establishment Type: "+d.Description+"<br>"+"Phone Number: "+d.Phone+"<br>"+"Address: "+d.Address+"<br>"+"Last Inspection: Date: "+date+"<br>"+"Inspection Result: "+d.inspections[speciali].Inspection_Result)
                                 .style("left", (d3.event.pageX) + "px")
                                 .style("top", (d3.event.pageY - 28) + "px");
                               console.log(d3.select(this[0]));
